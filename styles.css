@@ -1,0 +1,252 @@
+/* --- 1. Global Reset & Basic Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #FFFFFF; 
+    overflow-x: hidden;
+    position: relative;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* --- 2. Color Palette --- */
+:root {
+    --navy: #0B1E33;
+    --gold: #FFB800; /* Warm Sun Gold */
+    --muted-gold: #D4AF37; /* Used for subtle accents/borders */
+    --white: #FFFFFF;
+}
+
+/* --- 3. The Minimalist Sun Background (Crucial Fix) --- */
+.sun-bg {
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 600px;
+    height: 600px;
+    /* This creates the big, faded sun glow */
+    background: radial-gradient(circle, rgba(255, 184, 0, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+    border-radius: 50%;
+    z-index: -1; /* Puts it behind everything */
+}
+
+/* Add a pseudo-element for the minimal rays */
+.sun-bg::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 150%;
+    height: 1px;
+    background: rgba(255, 184, 0, 0.15); /* Thin, elegant lines */
+    transform: translate(-50%, -50%) rotate(-15deg);
+}
+
+/* --- 4. Header & Branding --- */
+header {
+    background-color: transparent;
+    padding: 30px 0;
+    z-index: 10;
+}
+
+.header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.branding {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.school-logo {
+    width: 70px; /* Slightly larger for better presence */
+    height: 70px; /* Slightly larger for better presence */
+    object-fit: contain; /* Ensures the entire logo is visible without cropping */
+}
+
+h1 {
+    font-size: 2rem;
+    color: var(--navy);
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 1rem;
+    color: var(--muted-gold);
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cta-btn {
+    background-color: var(--gold);
+    color: var(--navy);
+    border: none;
+    padding: 12px 25px;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+    transition: background 0.3s ease;
+}
+
+.cta-btn:hover {
+    background-color: #e6a600; /* Darker gold on hover */
+}
+
+/* --- 5. Common Component: The Card (Organized Box Look) --- */
+.card {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 4px;
+    border: 1px solid rgba(212, 175, 55, 0.2); /* Subtle Gold border */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Modern soft shadow */
+}
+
+.section-title {
+    font-size: 1.5rem;
+    color: var(--navy);
+    margin-bottom: 20px;
+    border-left: 4px solid var(--gold);
+    padding-left: 10px;
+}
+
+/* --- 6. Grids & Positioning (Asymmetry) --- */
+.grid-2-col {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.grid-3-col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+/* Offset the About section slightly for depth */
+.about-card {
+    grid-column: 1;
+}
+
+.languages-card {
+    grid-column: 2;
+    transform: translateY(20px); /* Slightly lower than About */
+}
+
+/* --- 7. Languages Styling --- */
+.languages-card h3 {
+    margin-bottom: 15px;
+}
+
+.lang-flex {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.lang-item {
+    font-weight: 400;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.flag { font-size: 1.2rem; }
+
+/* --- 8. Music / Conservatory Cards --- */
+.music-card {
+    text-align: center;
+    background-color: var(--white);
+    padding: 15px;
+    border-radius: 4px;
+    border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.music-card img {
+    width: 100%;
+    aspect-ratio: 4/3; /* Ensures a consistent aspect ratio for all music images */
+    object-fit: cover;
+    border-radius: 2px;
+    margin-bottom: 15px;
+}
+
+.music-card p {
+    color: var(--navy);
+    font-size: 0.95rem;
+}
+
+/* --- 9. Reviews Styling (Illustrated Stars) --- */
+.review-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.review-header {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.reviewer-name {
+    font-weight: 600;
+    color: var(--navy);
+}
+
+.reviewer-role {
+    font-size: 0.85rem;
+    color: #666;
+    margin-left: 5px;
+}
+
+.stars {
+    color: var(--gold);
+    font-size: 1.2rem;
+    margin-top: auto; /* Pushes stars to the bottom */
+    padding-top: 10px;
+}
+
+/* --- 10. Footer --- */
+footer {
+    background-color: var(--navy);
+    color: var(--white);
+    padding: 20px 0;
+    margin-top: 40px;
+    font-size: 0.85rem;
+}
+
+.footer-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.anthem-note {
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* --- 11. Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    h1 { font-size: 1.5rem; }
+    .grid-2-col, .grid-3-col { grid-template-columns: 1fr; }
+    .header-flex { flex-direction: column; text-align: center; gap: 15px; }
+    .branding { flex-direction: column; }
+    .languages-card { transform: none; }
+}
